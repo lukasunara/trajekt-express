@@ -1,10 +1,10 @@
 class FerryRoute {
-    constructor(routeId, destinationPostalNumber, departurePostalNumber, travelCompanyId, ferryId) {
+    constructor(routeId, departureCity, destinationCity, travelCompany, ferry) {
         this.routeId = routeId
-        this.destinationPostalNumber = destinationPostalNumber
-        this.departurePostalNumber = departurePostalNumber
-        this.travelCompanyId = travelCompanyId
-        this.ferryId = ferryId
+        this.departureCity = departureCity
+        this.destinationCity = destinationCity
+        this.travelCompany = travelCompany
+        this.ferry = ferry
     }
 }
 

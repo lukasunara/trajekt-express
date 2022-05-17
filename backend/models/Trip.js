@@ -1,8 +1,9 @@
 class Trip {
-    constructor(tripId, price, scheduleId) {
+    constructor(tripId, price, schedule, ferryRoute) {
         this.tripId = tripId
         this.price = price
-        this.scheduleId = scheduleId
+        this.schedule = schedule
+        this.ferryRoute = ferryRoute
     }
 }
 

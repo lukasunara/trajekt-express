@@ -1,8 +1,8 @@
 class City {
-    constructor(postalNumber, name, countryCode) {
+    constructor(postalNumber, name, country) {
         this.postalNumber = postalNumber
         this.name = name
-        this.countryCode = countryCode
+        this.country = country
     }
 }
 

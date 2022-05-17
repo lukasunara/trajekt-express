@@ -109,15 +109,15 @@ const sql_create_ferryRoute = `CREATE TABLE FerryRoute(
     departurePostalNumber VARCHAR(10) NOT NULL,
     travelCompanyId INT NOT NULL,
     ferryId INT NOT NULL,
-    FOREIGN KEY (destinationPostalNumber) REFERENCES City(postalNumber),
+    FOREIGN KEY (destinationPostalNumber) REFERENCES City(postalNumber)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-    FOREIGN KEY (departurePostalNumber) REFERENCES City(postalNumber),
+        ON UPDATE CASCADE,
+    FOREIGN KEY (departurePostalNumber) REFERENCES City(postalNumber)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-    FOREIGN KEY (travelCompanyId) REFERENCES TravelCompany(travelCompanyId),
+        ON UPDATE CASCADE,
+    FOREIGN KEY (travelCompanyId) REFERENCES TravelCompany(travelCompanyId)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
     FOREIGN KEY (ferryId) REFERENCES Ferry(ferryId)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -132,9 +132,9 @@ const sql_create_ticket = `CREATE TABLE Ticket(
     ticketId SERIAL PRIMARY KEY,
     travelerId INT NOT NULL,
     tripId INT NOT NULL,
-    FOREIGN KEY (travelerId) REFERENCES Traveler(travelerId),
+    FOREIGN KEY (travelerId) REFERENCES Traveler(travelerId)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
     FOREIGN KEY (tripId) REFERENCES Trip(tripId)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -147,9 +147,9 @@ const sql_create_tripRoute = `CREATE TABLE TripRoute(
     tripId INT NOT NULL,
     routeId INT NOT NULL,
     PRIMARY KEY (tripId, routeId),
-    FOREIGN KEY (tripId) REFERENCES Trip(tripId),
+    FOREIGN KEY (tripId) REFERENCES Trip(tripId)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
     FOREIGN KEY (routeId) REFERENCES FerryRoute(routeId)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -173,9 +173,9 @@ INSERT INTO Schedule(departureTime, arrivalTime) VALUES
     (timestamp '2022-04-23 19:00:00', timestamp '2022-04-23 19:22:00'),
     (timestamp '2022-04-29 15:00:00', timestamp '2022-04-29 16:11:00'),
     (timestamp '2022-04-29 20:00:00', timestamp '2022-04-29 20:21:00'),
-    (timestamp '2022-04-29 21:00:00', timestamp '2022-04-29 21:34:00');
+    (timestamp '2022-04-29 21:00:00', timestamp '2022-04-29 21:34:00'),
     (timestamp '2022-04-29 22:00:00', timestamp '2022-04-29 22:19:00'),
-    (timestamp '2022-04-30 16:00:00', timestamp '2022-04-30 17:25:00'),
+    (timestamp '2022-04-30 16:00:00', timestamp '2022-04-30 17:25:00');
 `;
 
 const sql_insert_ferry = `
