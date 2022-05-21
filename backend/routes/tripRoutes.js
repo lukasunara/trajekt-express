@@ -24,6 +24,17 @@ router.get('/getByCities', (req, res, next) => {
         })
 })
 
+router.get('/getByDepartureDate', (req, res, next) => {
+    let departureDate = new Date(req.body.departureDate)
+    return tripController.getTripsByDepartureDate(departureDate)
+        .then((trips) => {
+            res.json(trips).end()
+        }).catch((e) => {
+            console.error(e)
+            res.status(500).send(e.message)
+        })
+})
+
 router.post('/createTrip', (req, res, next) => {
     let price = req.body.price
     let departureTime = req.body.departureTime

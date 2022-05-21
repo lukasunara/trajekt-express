@@ -102,7 +102,7 @@ module.exports = {
                 JOIN city AS c2 ON c2.postalNumber = ferryRoute.departurePostalNumber
                 JOIN country AS cn1 ON cn1.countryCode = c1.countryCode
                 JOIN country AS cn2 ON cn2.countryCode = c2.countryCode
-            WHERE schedule.departureTime.getDate() >= $1
+            WHERE schedule.departureTime::DATE = '$1'
 			ORDER BY trip.tripId`,
             [departureDate]
         ).then((res) => {
