@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: com.android.tools:desugar_jdk_libs:1.1.5">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/desugar_jdk_libs/1.1.5/a62d0d5c033b56138dea5d67e9f012984503e511/desugar_jdk_libs-1.1.5.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
