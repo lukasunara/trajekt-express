@@ -19,6 +19,7 @@ class TripsAdapter(private var trips: MutableList<TripNR> = mutableListOf()) :
 
     interface InteractionListener{
         fun onClick(trip : TripNR)
+        fun onDelete(tripId : Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripsVH {
@@ -63,8 +64,12 @@ class TripsAdapter(private var trips: MutableList<TripNR> = mutableListOf()) :
                 arrivalTime.text = trip.schedule.arrivalTime
                 price.text = "Cijena: ${trip.price} kn"
 
-                root.setOnClickListener {
-                    tripsInteractionListener.onClick(trip)
+//                root.setOnClickListener {
+//                    tripsInteractionListener.onClick(trip)
+//                }
+
+                izbrisi.setOnClickListener {
+                    tripsInteractionListener.onDelete(trip.tripId.toInt())
                 }
             }
         }

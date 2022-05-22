@@ -78,5 +78,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Cijena: 50 kn"/>
 
+    <Button
+        android:id="@+id/izbrisi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:text="Izbriši"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

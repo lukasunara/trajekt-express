@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface ITripRepository {
     fun getAllTrips() : Single<TripsNetworkResponse>
+    fun deleteTrip(tripId : Int) : Single<Unit>
 }

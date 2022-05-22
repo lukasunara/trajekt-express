@@ -46,4 +46,17 @@ class TripsViewModel @Inject constructor(
                 })
         )
     }
+
+    fun deleteTrip(tripId : Int){
+        disposables.add(
+            tripRepository
+                .deleteTrip(tripId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                }, {
+
+                })
+        )
+    }
 }

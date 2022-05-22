@@ -9,4 +9,8 @@ class TripRepository @Inject constructor(private val trajektExpressService: Traj
     override fun getAllTrips(): Single<TripsNetworkResponse> {
         return trajektExpressService.getAllTrips()
     }
+
+    override fun deleteTrip(tripId: Int): Single<Unit> {
+        return trajektExpressService.deleteTrip(tripId)
+    }
 }

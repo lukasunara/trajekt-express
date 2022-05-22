@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trajektexpress.R
 import com.example.trajektexpress.databinding.FragmentTripsBinding
+import com.example.trajektexpress.networking.model.TripNR
 import com.example.trajektexpress.util.adapter.TripsAdapter
 import com.example.trajektexpress.viewmodel.TripsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +39,17 @@ class TripsFragment() : BaseFragment() {
         }
     }
 
+    private val tripInteractionListener = object : TripsAdapter.InteractionListener{
+        override fun onClick(trip: TripNR) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onDelete(tripId: Int) {
+            tripsViewModel.deleteTrip(tripId)
+            tripsViewModel.getTrips()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,6 +66,7 @@ class TripsFragment() : BaseFragment() {
         binding.pozdrav.text = "Pozdrav, ${args.ime}"
         initRecyclerView()
         observeLiveData()
+        tripsAdapter.setInteractionListener(tripInteractionListener)
 
         initLayout()
     }
