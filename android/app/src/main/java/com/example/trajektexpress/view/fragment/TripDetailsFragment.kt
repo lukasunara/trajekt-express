@@ -27,4 +27,21 @@ class TripDetailsFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            with(args) {
+                tripItem.arrivalTime.text = trip.schedule.arrivalTime
+                tripItem.departureTime.text = trip.schedule.departureTime
+                tripItem.price.text = trip.price
+                travelCompanyName.text = trip.ferryRoute.travelCompany.name
+                travelCompanyCid.text = trip.ferryRoute.travelCompany.CID
+                ferryName.text = trip.ferryRoute.ferry.name
+                ferryCapacity.text = trip.ferryRoute.ferry.capacity.toString()
+                ferryCanTransport.text = if (trip.ferryRoute.ferry.canTransportVehicles) "YES" else "NO"
+            }
+        }
+    }
+
 }

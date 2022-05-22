@@ -28,6 +28,7 @@
         app:layout_constraintTop_toBottomOf="@id/trip_item">
 
         <TextView
+            android:id="@+id/travel_company_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
@@ -37,6 +38,7 @@
             tools:text="Jadrolinija" />
 
         <TextView
+            android:id="@+id/travel_company_cid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="8dp"
@@ -68,6 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/travel_company">
 
         <TextView
+            android:id="@+id/ferry_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
@@ -77,6 +80,7 @@
             tools:text="Juraj Dalmatinac" />
 
         <TextView
+            android:id="@+id/ferry_capacity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
@@ -87,6 +91,7 @@
             tools:text="Capacity: 444" />
 
         <TextView
+            android:id="@+id/ferry_can_transport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="8dp"
