@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -16,6 +17,8 @@ android {
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", '"http://192.168.1.4:3000"'
     }
 
     buildTypes {
@@ -25,12 +28,22 @@ android {
         }
     }
 
+    flavorDimensions "base_url"
+    productFlavors {
+        dev {
+            dimension "base_url"
+            versionNameSuffix "-dev ($defaultConfig.versionCode)"
+        }
+        prod {
+            dimension "base_url"
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
 
     compileOptions {
-        coreLibraryDesugaringEnabled true
 
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -66,12 +79,25 @@ dependencies {
     // Koin
     implementation 'io.insert-koin:koin-android:3.1.2'
 
+    // Dagger hilt
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+
     // Network
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
-    implementation "com.squareup.moshi:moshi:$moshi_version"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+
+    implementation "com.squareup.moshi:moshi:1.12.0"
+    implementation "com.squareup.moshi:moshi-adapters:1.12.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+    implementation "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
+
+    // In-app HTTP inspector
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
     // Image loading
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -87,4 +113,12 @@ dependencies {
 
     // ViewBinding delegate
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6'
+
+    // Navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
+    implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
+
+    //RxJava
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 }
