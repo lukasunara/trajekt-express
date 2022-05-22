@@ -29,6 +29,25 @@
         <argument
             android:name="ime"
             app:argType="string"/>
+
+        <action
+            android:id="@+id/tripsFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment">
+
+            <argument
+                android:name="trip"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tripDetailsFragment"
+        android:name="com.example.trajektexpress.view.fragment.TripDetailsFragment"
+        tools:layout="@layout/fragment_trip_details">
+
+        <argument
+            android:name="trip"
+            app:argType="string" />
     </fragment>
 
 </navigation>
