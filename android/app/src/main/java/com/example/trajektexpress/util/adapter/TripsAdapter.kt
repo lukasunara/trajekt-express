@@ -5,14 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trajektexpress.databinding.ItemTripBinding
 import com.example.trajektexpress.model.Trip
+import com.example.trajektexpress.networking.model.TripNR
+import com.example.trajektexpress.networking.model.TripsNetworkResponse
 
-class TripsAdapter(private var trips: MutableList<Trip> = mutableListOf()) :
+class TripsAdapter(private var trips: MutableList<TripNR> = mutableListOf()) :
     RecyclerView.Adapter<TripsAdapter.TripsVH>() {
 
     private lateinit var tripsInteractionListener: InteractionListener
 
     interface InteractionListener{
-        fun onClick(trip : Trip)
+        fun onClick(trip : TripNR)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripsVH {
@@ -28,7 +30,7 @@ class TripsAdapter(private var trips: MutableList<Trip> = mutableListOf()) :
         return trips.size
     }
 
-    fun setTrips(newTrips: MutableList<Trip>) {
+    fun setTrips(newTrips: List<TripNR>) {
         trips.clear()
         trips.addAll(newTrips)
         notifyDataSetChanged()
@@ -42,12 +44,12 @@ class TripsAdapter(private var trips: MutableList<Trip> = mutableListOf()) :
     inner class TripsVH(private val binding: ItemTripBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(trip: Trip) {
+        fun bind(trip: TripNR) {
             binding.apply {
-                departure.text = trip.departure
-                departureTime.text = trip.departureTime
-                destination.text = trip.destination
-                arrivalTime.text = trip.arrivalTime
+                departure.text = trip.ferryRoute.departureCity.name
+                departureTime.text = trip.schedule.departureTime
+                destination.text = trip.ferryRoute.destinationCity.name
+                arrivalTime.text = trip.schedule.arrivalTime
                 price.text = "Cijena: ${trip.price} kn"
 
                 root.setOnClickListener {

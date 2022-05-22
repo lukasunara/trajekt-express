@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trajektexpress.R
 import com.example.trajektexpress.databinding.FragmentTripsBinding
-import com.example.trajektexpress.model.Trip
 import com.example.trajektexpress.util.adapter.TripsAdapter
 import com.example.trajektexpress.viewmodel.TripsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,15 +58,7 @@ class TripsFragment() : BaseFragment() {
 
     private fun observeLiveData() {
         tripsViewModel.trips.observe(viewLifecycleOwner){
-            it.trips.map { trip ->
-                Trip(trip.ferryRoute.departureCity.name,
-                    trip.ferryRoute.destinationCity.name,
-                    trip.schedule.departureTime,
-                    trip.schedule.arrivalTime,
-                    trip.price)
-            }.let { trips ->
-                tripsAdapter.setTrips(trips as MutableList<Trip>)
-            }
+            tripsAdapter.setTrips(it.trips)
         }
 
         tripsViewModel.tripsFail.observe(viewLifecycleOwner){
