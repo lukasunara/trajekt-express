@@ -34,11 +34,11 @@ class TripDetailsFragment : BaseFragment() {
             with(args) {
                 tripItem.arrivalTime.text = trip.schedule.arrivalTime
                 tripItem.departureTime.text = trip.schedule.departureTime
-                tripItem.price.text = trip.price
+                tripItem.price.text = "Cijena: ${trip.price} kn"
                 travelCompanyName.text = trip.ferryRoute.travelCompany.name
-                travelCompanyCid.text = trip.ferryRoute.travelCompany.CID
+                travelCompanyCid.text = "CID: ${trip.ferryRoute.travelCompany.CID}"
                 ferryName.text = trip.ferryRoute.ferry.name
-                ferryCapacity.text = trip.ferryRoute.ferry.capacity.toString()
+                ferryCapacity.text = "Capacity: ${trip.ferryRoute.ferry.capacity}"
                 ferryCanTransport.text = if (trip.ferryRoute.ferry.canTransportVehicles) "YES" else "NO"
             }
         }
