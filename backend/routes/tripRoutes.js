@@ -77,7 +77,7 @@ router.put("/updateTrip/:tripId", (req, res, next) => {
 })
 
 router.delete('/delete/:tripId', (req, res, next) => {
-    repo.deleteTrip(req.params.tripId).then(() => {
+    tripController.deleteTrip(req.params.tripId).then(() => {
         res.status(204).end()
     }).catch((e) => {
         res.status(500).send(e.message)
