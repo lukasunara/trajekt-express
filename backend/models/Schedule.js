@@ -1,8 +1,11 @@
 class Schedule {
     constructor(scheduleId, departureTime, arrivalTime) {
+        let departure = new Date(departureTime)
+        let arrival = new Date(arrivalTime)
+
         this.scheduleId = scheduleId
-        this.departureTime = departureTime
-        this.arrivalTime = arrivalTime
+        this.departureTime = departure.toLocaleTimeString()
+        this.arrivalTime = arrival.toLocaleTimeString()
         this.duration = this.diffHours(departureTime, arrivalTime)
     }
 

@@ -52,7 +52,7 @@ module.exports = {
         })
     },
 
-    getTripsByCities: (departureCity, destinationCity) => {
+    getTripsByCities: (departureCity) => {
         return pool.query(
             `SELECT trip.tripId, trip.price, schedule.scheduleId, schedule.departureTime, schedule.arrivalTime,
                 ferryRoute.departurePostalNumber, ferryRoute.destinationPostalNumber, ferryRoute.routeId,
@@ -67,9 +67,9 @@ module.exports = {
                 JOIN city AS c2 ON c2.postalNumber = ferryRoute.departurePostalNumber
                 JOIN country AS cn1 ON cn1.countryCode = c1.countryCode
                 JOIN country AS cn2 ON cn2.countryCode = c2.countryCode
-            WHERE c2.name = '$2' AND c1.name = '$1'
+            WHERE c1.name = '$1'
 			ORDER BY trip.tripId;`,
-            [departureCity, destinationCity]
+            [departureCity]
         ).then((res) => {
             let array = []
             res.rows.forEach((row) => {
@@ -84,7 +84,7 @@ module.exports = {
 
                 array.push(new Trip(row.tripid, row.price, schedule, ferryRoute))
             })
-            return array
+            return new Trips(array)
         })
     },
 
@@ -120,7 +120,7 @@ module.exports = {
 
                 array.push(new Trip(row.tripid, row.price, schedule, ferryRoute))
             })
-            return array
+            return new Trips(array)
         })
     },
 

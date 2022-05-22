@@ -14,8 +14,7 @@ router.get('/getAll', (req, res, next) => {
 
 router.get('/getByCities', (req, res, next) => {
     let departureCity = req.body.departureCityName
-    let destinationCity = req.body.destinationCityName
-    return tripController.getTripsByCities(departureCity, destinationCity)
+    return tripController.getTripsByCities(departureCity)
         .then((trips) => {
             res.json(trips).end()
         }).catch((e) => {
@@ -77,7 +76,7 @@ router.put("/updateTrip/:tripId", (req, res, next) => {
     }
 })
 
-router.delete('/:tripId', (req, res, next) => {
+router.delete('/delete/:tripId', (req, res, next) => {
     repo.deleteTrip(req.params.tripId).then(() => {
         res.status(204).end()
     }).catch((e) => {
