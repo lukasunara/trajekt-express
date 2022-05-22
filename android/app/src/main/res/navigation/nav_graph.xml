@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.trajektexpress.view.fragment.MainFragment"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/mainFragment_to_tripsFragment"
+            app:destination="@id/tripsFragment">
+
+            <argument
+                android:name="ime"
+                app:argType="string"/>
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/tripsFragment"
+        android:name="com.example.trajektexpress.view.fragment.TripsFragment"
+        tools:layout="@layout/fragment_trips">
+
+        <argument
+            android:name="ime"
+            app:argType="string"/>
+
+        <action
+            android:id="@+id/tripsFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment">
+
+            <argument
+                android:name="trip"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tripDetailsFragment"
+        android:name="com.example.trajektexpress.view.fragment.TripDetailsFragment"
+        tools:layout="@layout/fragment_trip_details">
+
+        <argument
+            android:name="trip"
+            app:argType="com.example.trajektexpress.networking.model.TripNR" />
+    </fragment>
+
+</navigation>
