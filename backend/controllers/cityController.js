@@ -1,3 +1,4 @@
+const { Pool } = require('pg');
 const City = require('../models/City')
 const Country = require('../models/Country')
 

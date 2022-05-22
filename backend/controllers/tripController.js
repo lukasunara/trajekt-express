@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 const City = require('../models/City')
 const Trip = require('../models/Trip')
+const Trips = require('../models/Trips')
 const Ferry = require('../models/Ferry')
 const Country = require('../models/Country')
 const Schedule = require('../models/Schedule')
@@ -47,7 +48,7 @@ module.exports = {
 
                 array.push(new Trip(row.tripid, row.price, schedule, ferryRoute))
             })
-            return array
+            return Trips(array)
         })
     },
 

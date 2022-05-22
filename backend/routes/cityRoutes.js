@@ -10,3 +10,5 @@ router.get('/getAll', (req, res, next) => {
         res.status(500).send(e.message)
     })
 })
+
+module.exports = router

@@ -1,3 +1,4 @@
+const { Pool } = require('pg');
 const Ferry = require('../models/Ferry')
 
 const pool = new Pool({
