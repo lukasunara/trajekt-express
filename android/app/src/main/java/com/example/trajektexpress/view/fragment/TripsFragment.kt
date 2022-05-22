@@ -54,6 +54,22 @@ class TripsFragment() : BaseFragment() {
         binding.pozdrav.text = "Pozdrav, ${args.ime}"
         initRecyclerView()
         observeLiveData()
+
+        initLayout()
+    }
+
+    private fun initLayout() {
+        binding.apply {
+            btnFiltriraj.setOnClickListener {
+                val polaziste = textFieldInput.text
+                if(polaziste.isNullOrBlank()){
+                    Toast.makeText(requireContext(), "Unesite polazište!", Toast.LENGTH_SHORT).show()
+                    tripsViewModel.getTrips()
+                }else{
+                    tripsAdapter.filtriraj(polaziste.toString())
+                }
+            }
+        }
     }
 
     private fun observeLiveData() {

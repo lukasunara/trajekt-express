@@ -7,6 +7,10 @@ import com.example.trajektexpress.databinding.ItemTripBinding
 import com.example.trajektexpress.model.Trip
 import com.example.trajektexpress.networking.model.TripNR
 import com.example.trajektexpress.networking.model.TripsNetworkResponse
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
 
 class TripsAdapter(private var trips: MutableList<TripNR> = mutableListOf()) :
     RecyclerView.Adapter<TripsAdapter.TripsVH>() {
@@ -34,6 +38,13 @@ class TripsAdapter(private var trips: MutableList<TripNR> = mutableListOf()) :
         trips.clear()
         trips.addAll(newTrips)
         notifyDataSetChanged()
+    }
+
+    fun filtriraj(polaziste : String){
+        val list = trips.filter {
+            it.ferryRoute.departureCity.name.lowercase().equals(polaziste.lowercase())
+        }
+        setTrips(list)
     }
 
     fun setInteractionListener(interactionListener: InteractionListener){
