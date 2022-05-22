@@ -41,7 +41,7 @@ module.exports = {
                 let departureCity = new City(row.departurepostalnumber, row.departurecityname, departureCountry)
                 let destinationCity = new City(row.destinationpostalnumber, row.destinationcityname, destinationCountry)
                 let travelCompany = new TravelCompany(row.travelcompanyid, row.cid, row.travelcompanyname)
-                let ferry = new Ferry(row.ferryid, row.ferryname, row.capacity, row.cantransporthvehicles)
+                let ferry = new Ferry(row.ferryid, row.ferryname, row.capacity, row.cantransportvehicles)
                 let ferryRoute = new FerryRoute(row.routeid, departureCity, destinationCity, travelCompany, ferry)
                 let schedule = new Schedule(row.scheduleid, row.departuretime, row.arrivaltime)
 
