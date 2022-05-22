@@ -32,7 +32,7 @@ module.exports = {
                 JOIN city AS c2 ON c2.postalNumber = ferryRoute.departurePostalNumber
                 JOIN country AS cn1 ON cn1.countryCode = c1.countryCode
                 JOIN country AS cn2 ON cn2.countryCode = c2.countryCode
-			ORDER BY trip.tripId`
+			ORDER BY trip.tripId;`
         ).then((res) => {
             let array = []
             res.rows.forEach((row) => {
@@ -67,7 +67,7 @@ module.exports = {
                 JOIN country AS cn1 ON cn1.countryCode = c1.countryCode
                 JOIN country AS cn2 ON cn2.countryCode = c2.countryCode
             WHERE c2.name = '$2' AND c1.name = '$1'
-			ORDER BY trip.tripId`,
+			ORDER BY trip.tripId;`,
             [departureCity, destinationCity]
         ).then((res) => {
             let array = []
@@ -77,7 +77,7 @@ module.exports = {
                 let departureCity = new City(row.departurepostalnumber, row.departurecityname, departureCountry)
                 let destinationCity = new City(row.destinationpostalnumber, row.destinationcityname, destinationCountry)
                 let travelCompany = new TravelCompany(row.travelcompanyid, row.cid, row.travelcompanyname)
-                let ferry = new Ferry(row.ferryid, row.ferryname, row.capacity, row.cantransporthvehicles)
+                let ferry = new Ferry(row.ferryid, row.ferryname, row.capacity, row.cantransportvehicles)
                 let ferryRoute = new FerryRoute(row.routeid, departureCity, destinationCity, travelCompany, ferry)
                 let schedule = new Schedule(row.scheduleid, row.departuretime, row.arrivaltime)
 
@@ -103,7 +103,7 @@ module.exports = {
                 JOIN country AS cn1 ON cn1.countryCode = c1.countryCode
                 JOIN country AS cn2 ON cn2.countryCode = c2.countryCode
             WHERE schedule.departureTime::DATE = '$1'
-			ORDER BY trip.tripId`,
+			ORDER BY trip.tripId;`,
             [departureDate]
         ).then((res) => {
             let array = []
@@ -113,7 +113,7 @@ module.exports = {
                 let departureCity = new City(row.departurepostalnumber, row.departurecityname, departureCountry)
                 let destinationCity = new City(row.destinationpostalnumber, row.destinationcityname, destinationCountry)
                 let travelCompany = new TravelCompany(row.travelcompanyid, row.cid, row.travelcompanyname)
-                let ferry = new Ferry(row.ferryid, row.ferryname, row.capacity, row.cantransporthvehicles)
+                let ferry = new Ferry(row.ferryid, row.ferryname, row.capacity, row.cantransportvehicles)
                 let ferryRoute = new FerryRoute(row.routeid, departureCity, destinationCity, travelCompany, ferry)
                 let schedule = new Schedule(row.scheduleid, row.departuretime, row.arrivaltime)
 
@@ -128,7 +128,7 @@ module.exports = {
         if (!schedule)
             schedule = scheduleController.createSchedule(departureTime, arrivalTime)
         return pool.query(
-            'INSERT INTO trip (price, scheduleId) values ($1, $2)', [price, schedule.scheduleId]
+            'INSERT INTO trip (price, scheduleId) values ($1, $2);', [price, schedule.scheduleId]
         ).then((res) => {
             res.rows[0]
         })
@@ -139,13 +139,13 @@ module.exports = {
         if (!schedule)
             schedule = scheduleController.createSchedule(updatedDepartureTime, updatedArrivalTime)
         return pool.query(
-            'UPDATE trip SET scheduleId = $1 WHERE tripId = $2)', [schedule.scheduleId, tripId]
+            'UPDATE trip SET scheduleId = $1 WHERE tripId = $2);', [schedule.scheduleId, tripId]
         ).then((res) => {
             res.rows[0]
         })
     },
 
     deleteTrip: (tripId) => {
-        return pool.query('DELETE FROM trip WHERE tripId = $1', [tripId])
+        return pool.query('DELETE FROM trip WHERE tripId = $1;', [tripId])
     }
 }

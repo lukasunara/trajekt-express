@@ -12,7 +12,7 @@ const pool = new Pool({
 module.exports = {
     getScheduleById: (scheduleId) => {
         return pool.query(
-            `SELECT scheduleId, departureTime, arrivalTime FROM schedule WHERE scheduleId = $1`, [scheduleId]
+            `SELECT scheduleId, departureTime, arrivalTime FROM schedule WHERE scheduleId = $1;`, [scheduleId]
         ).then((res) => {
             if (res.rowCount > 0) {
                 let row = res.rows[0]
@@ -27,7 +27,7 @@ module.exports = {
         return pool.query(
             `SELECT scheduleId, departureTime, arrivalTime
                 FROM schedule
-                WHERE departureTime = $1 AND arrivalTime = $2`,
+                WHERE departureTime = $1 AND arrivalTime = $2;`,
             [departureTime, arrivalTime]
         ).then((res) => {
             if (res.rowCount > 0) {
@@ -41,7 +41,7 @@ module.exports = {
 
     createSchedule: (departureTime, arrivalTime) => {
         return pool.query(
-            'INSERT INTO schedule (departureTime, arrivalTime) values ($1, $2)', [departureTime, arrivalTime]
+            'INSERT INTO schedule (departureTime, arrivalTime) VALUES ($1, $2);', [departureTime, arrivalTime]
         ).then((res) => {
             let row = res.rows[0]
             new Schedule(row.scheduleid, row.departuretime, row.arrivaltime)

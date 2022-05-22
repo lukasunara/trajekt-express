@@ -12,7 +12,7 @@ const pool = new Pool({
 module.exports = {
     createTripRoute: (tripId, routeId) => {
         return pool.query(
-            'INSERT INTO tripRoute (tripId, routeId) values ($1, $2)', [tripId, routeId]
+            'INSERT INTO tripRoute (tripId, routeId) VALUES ($1, $2);', [tripId, routeId]
         ).then((res) => {
             let row = res.rows[0]
             new TripRoute(row.tripId, row.routeId)
