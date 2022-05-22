@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,7 +42,9 @@ class TripsFragment() : BaseFragment() {
 
     private val tripInteractionListener = object : TripsAdapter.InteractionListener{
         override fun onClick(trip: TripNR) {
-            TODO("Not yet implemented")
+            val action =
+                TripsFragmentDirections.tripsFragmentToTripDetailsFragment(trip)
+            findNavController().navigate(action)
         }
 
         override fun onDelete(tripId: Int) {

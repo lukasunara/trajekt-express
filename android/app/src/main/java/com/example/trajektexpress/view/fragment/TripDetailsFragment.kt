@@ -34,6 +34,8 @@ class TripDetailsFragment : BaseFragment() {
             with(args) {
                 tripItem.arrivalTime.text = trip.schedule.arrivalTime
                 tripItem.departureTime.text = trip.schedule.departureTime
+                tripItem.departure.text = trip.ferryRoute.departureCity.name
+                tripItem.destination.text = trip.ferryRoute.destinationCity.name
                 tripItem.price.text = "Cijena: ${trip.price} kn"
                 travelCompanyName.text = trip.ferryRoute.travelCompany.name
                 travelCompanyCid.text = "CID: ${trip.ferryRoute.travelCompany.CID}"

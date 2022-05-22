@@ -36,7 +36,7 @@
 
             <argument
                 android:name="trip"
-                app:argType="string" />
+                app:argType="com.example.trajektexpress.networking.model.TripNR" />
         </action>
     </fragment>
 

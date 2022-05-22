@@ -64,9 +64,9 @@ class TripsAdapter(private var trips: MutableList<TripNR> = mutableListOf()) :
                 arrivalTime.text = trip.schedule.arrivalTime
                 price.text = "Cijena: ${trip.price} kn"
 
-//                root.setOnClickListener {
-//                    tripsInteractionListener.onClick(trip)
-//                }
+                root.setOnClickListener {
+                    tripsInteractionListener.onClick(trip)
+                }
 
                 izbrisi.setOnClickListener {
                     tripsInteractionListener.onDelete(trip.tripId.toInt())
