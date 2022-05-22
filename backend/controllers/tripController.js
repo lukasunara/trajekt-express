@@ -48,7 +48,7 @@ module.exports = {
 
                 array.push(new Trip(row.tripid, row.price, schedule, ferryRoute))
             })
-            return Trips(array)
+            return new Trips(array)
         })
     },
 
